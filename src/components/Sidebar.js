@@ -9,8 +9,12 @@ import CartButtons from './CartButtons'
 import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
+  //we set up our provider, we wrap the app in the provider, and then since sidebar is in the app, we can access it using the hook inside useProductsContext
+  const data = useProductsContext()
+  console.log(data);
+  // const { openSidebar, closeSidebar } = useProductsContext
   const isOpen = false
-  return <SidebarContainer>
+return <SidebarContainer>
     <aside className={`${isOpen  ? "sidebar show-sidebar" : "sidebar"}`}>
      <div className="sidebar-header">
        <img src={logo} className="logo"

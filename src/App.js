@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'  
 import { Home, Products, SingleProduct, About, Error, Cart, Checkout, PrivateRoute } from './pages'
 
+
+//app should be only responsible to render the pages
 function App() {
   return (
   <Router> 

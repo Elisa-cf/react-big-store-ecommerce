@@ -9,9 +9,18 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from '../actions'
 
-const products_reducer = (state, action) => {
+const products_reducer = (state, action) => {  //state: the old state before the updated, action: the action that we want to do
+
+ if(action.type === 'SIDEBAR_OPEN') {
+   return { ...state, isSidebarOpen: true}
+ }
+
+  if (action.type === 'SIDEBAR_CLOSE') {
+    return { ...state, isSidebarOpen: false }
+  }
+
   return state
-  throw new Error(`No Matching "${action.type}" - action type`)
+  throw new Error(`No Matching "${action.type}" - action type`) //this will tell you that there is something wrong
 }
 
 export default products_reducer

@@ -19,3 +19,14 @@ export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM'
 export const TOGGLE_CART_ITEM_AMOUNT = 'TOGGLE_CART_ITEM_AMOUNT'
 export const CLEAR_CART = 'CLEAR_CART'
 export const COUNT_CART_TOTALS = 'COUNT_CART_TOTALS'
+
+
+//better set up if we have all our actions in a diferent file. WHY?
+
+// in the product context when we set up the actions, we can add them without '' since we import them from the file actions. It would be like:
+
+// const openSidebar = () => {
+//  dispatch({ type: SIDEBAR_OPEN })  => instead of: 'SIDEBAR_OPEN'
+// }
+
+// so each context will look for specific actions that are in this file
