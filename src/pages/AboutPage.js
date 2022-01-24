@@ -4,7 +4,7 @@ import { PageHero } from '../components'
 import aboutImg from '../assets/hero-bcg.jpeg'
 
 const AboutPage = () => {
-  return <h4>about page</h4>
+  return <main><PageHero/></main>
 }
 
 const Wrapper = styled.section`
