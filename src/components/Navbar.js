@@ -10,6 +10,7 @@ import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
   const { openSidebar } = useProductsContext()
+  // const {openSidebar} = useContext(ProductsProvider) => in this case you also need to import { useContext } from 'react';
   return <NavContainer>
     <div className='nav-center'>
       <div className="nav-header">

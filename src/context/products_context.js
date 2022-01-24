@@ -46,3 +46,9 @@ export const ProductsProvider = ({ children }) => {
 export const useProductsContext = () => {
   return useContext(ProductsContext)
 }
+
+//OTHERWAY: (check the navbar.js to follow this option)
+//export default ProductsContext;
+//export {ProductsProvider}
+
+//also if you use this path in this file you need to put import { createContext } from "react"; instead of useContext because you import useContext in the navbar.js file
