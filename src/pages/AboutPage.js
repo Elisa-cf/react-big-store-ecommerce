@@ -8,7 +8,14 @@ const AboutPage = () => {
     <PageHero/>
   <Wrapper className='page section section-center'>
   <img src={aboutImg} alt="nice desk" />
-  
+  <article>
+    <div className="title">
+      <h2>our story</h2>
+      <div className="underline">
+      </div>
+    </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, provident. Molestias assumenda quia ea pariatur esse consequuntur voluptate corporis. Dolor quae dicta rerum nisi atque? Omnis culpa nam totam quaerat!</p>
+  </article>
   </Wrapper>
   </main>
 }
