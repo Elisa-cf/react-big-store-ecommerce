@@ -6,8 +6,12 @@ const Contact = () => {
     <h3>Join our newsletter and get 20% off</h3>
     <div className="content">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit asperiores ipsa, eius laborum rerum in assumenda recusandae fuga cum dolorum?</p>
-      <form className="contact-form">
-        <input type="email" className='form-input' placeholder="enter email"/>
+      <form className="contact-form" 
+      action="https://formspree.io/f/myyokagy"
+      method="POST"
+      >
+        <input type="email" className='form-input' placeholder="enter email"
+          name="_replyto"/>
         <button type="submit" className='submit-btn'>subscribe</button>
       </form>
     </div>
