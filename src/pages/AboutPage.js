@@ -4,7 +4,10 @@ import { PageHero } from '../components'
 import aboutImg from '../assets/hero-bcg.jpeg'
 
 const AboutPage = () => {
-  return <main><PageHero/></main>
+  return <main>
+    <PageHero/>
+  <Wrapper className='page section section-center'></Wrapper>
+  </main>
 }
 
 const Wrapper = styled.section`
