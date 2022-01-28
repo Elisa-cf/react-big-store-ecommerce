@@ -19,6 +19,10 @@ const products_reducer = (state, action) => {  //state: the old state before the
     return { ...state, isSidebarOpen: false }
   }
 
+  if (action.type === 'GET_PRODUCTS_BEGIN') {
+    return {...state, products_loading: true}
+  }
+
   return state
   throw new Error(`No Matching "${action.type}" - action type`) //this will tell you that there is something wrong
 }
