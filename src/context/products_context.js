@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useReducer } from 'react'
 import reducer from '../reducers/products_reducer'
-import { products_url as url } from '../utils/constants'
+import { products_one as url_one } from '../utils/constants'
+import { products_two as url_two } from '../utils/constants'
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -35,6 +36,21 @@ export const ProductsProvider = ({ children }) => {
   const closeSidebar = () => {
     dispatch({ type: SIDEBAR_CLOSE })
   }
+
+//FETCHING ALL PRODUCTS FROM URL_ONE WITH AXIOS/ASYNC/AWAIT:
+
+  const fetchProducts = async() => {
+  const response_one = await url_one.get()
+  console.log(response_one);
+  const response_two = await url_two.get()
+  console.log(response_two);
+  }
+
+ 
+  useEffect (() => {
+    fetchProducts()
+  }, [])
+
 
   return (
     <ProductsContext.Provider value={{...state, openSidebar, closeSidebar}}>  {/* you pass the current state and the functions in order to be able to use them in the components */}
