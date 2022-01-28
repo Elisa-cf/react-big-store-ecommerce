@@ -17,6 +17,10 @@ import { FaAcquisitionsIncorporated } from 'react-icons/fa'
 
 const initialState = {
   isSidebarOpen: false,
+  products_loading: false,
+  products_error: false,
+  products: [], //if everything is correct we will gonna get the products
+  featured_products:[],
 }
 
 const ProductsContext = React.createContext()
@@ -40,10 +44,16 @@ export const ProductsProvider = ({ children }) => {
 //FETCHING ALL PRODUCTS FROM URL_ONE WITH AXIOS/ASYNC/AWAIT:
 
   const fetchProducts = async() => {
-  const response_one = await url_one.get()
-  console.log(response_one);
-  const response_two = await url_two.get()
-  console.log(response_two);
+  dispatch({ type: GET_PRODUCTS_BEGIN }) // set up the loading
+  try {
+    const response_one = await url_one.get()
+    const products_one = response.data
+    const response_two = await url_two.get()
+    const products_two = response.data
+  } catch (error) {
+    
+  }
+  
   }
 
  
