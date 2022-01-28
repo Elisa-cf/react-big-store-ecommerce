@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { GiCompass, GiDiamondHard, GiStabbedNote } from 'react-icons/gi'
 export const links = [
   {
@@ -42,6 +43,18 @@ export const services = [
   },
 ]
 
-export const products_url = 'https://course-api.com/react-store-products'
 
-export const single_product_url = `https://course-api.com/react-store-single-product?id=`
+//api products from fakestoreapi:
+export const products_one = axios.create({
+  baseURL:'https://fakestoreapi.com/products'})
+
+
+//api products from j.smigla:
+export const products_two = axios.create({
+  baseURL: 'https://course-api.com/react-store-products'
+})
+
+// export const products_url = 'https://course-api.com/react-store-products'
+
+export const single_product_url = `https://fakestoreapi.com/products?id=`
+// export const single_product_url = `https://course-api.com/react-store-single-product?id=`
