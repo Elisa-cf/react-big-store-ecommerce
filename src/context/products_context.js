@@ -1,8 +1,6 @@
-import axios from 'axios'
 import React, { useContext, useEffect, useReducer } from 'react'
 import reducer from '../reducers/products_reducer'
 import { products_one as url_one } from '../utils/constants'
-import { products_two as url_two } from '../utils/constants'
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -19,17 +17,14 @@ const initialState = {
   isSidebarOpen: false,
   products_loading: false,
   products_error: false,
-  products: [], //if everything is correct we will gonna get the products
+  products: [],
   featured_products:[],
 }
 
 const ProductsContext = React.createContext()
 
 export const ProductsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState) //state=current state, dispatch: the function that we use to control our state. First we pass the type of action into the dispatch and then we go to the reducer(the function that actually controls our state) and that is how we operate on the state using usereducer. You can only manipulate the state if there is an action. UseReducer it is very handy when your app becomes bigger and more complex, you avoid bugs, errors... because you are controlling the states of your app.
-
-  //reducer = function that will control our state, initialState = current state before updating it
-
+  const [state, dispatch] = useReducer(reducer, initialState) 
 
  //DISPATCH ACTIONS
 
@@ -41,40 +36,35 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE })
   }
 
-//FETCHING ALL PRODUCTS FROM URL_ONE WITH AXIOS/ASYNC/AWAIT:
 
-  const fetchProducts = async() => {
-  dispatch({ type: GET_PRODUCTS_BEGIN }) // set up the loading
-  try {
-    const response_one = await url_one.get()
-    const products_one = response.data
-    const response_two = await url_two.get()
-    const products_two = response.data
-  } catch (error) {
-    
-  }
-  
+
+  //FETCHING DATA FROM FAKEAPI: 
+  //function that handles the loading, the succes and the error:
+  const fetchProducts = async () => {
+    dispatch({ type: GET_PRODUCTS_BEGIN }) 
+    try {
+      const response_one = await url_one.get()
+      const products_one = response_one.data
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products_one })
+    } catch (error) {
+      dispatch({ type: GET_PRODUCTS_ERROR })
+    }
+
   }
 
- 
-  useEffect (() => {
+  useEffect(() => {
     fetchProducts()
   }, [])
 
 
+
   return (
-    <ProductsContext.Provider value={{...state, openSidebar, closeSidebar}}>  {/* you pass the current state and the functions in order to be able to use them in the components */}
+    <ProductsContext.Provider value={{...state, openSidebar, closeSidebar}}>  
       {children}
     </ProductsContext.Provider>
   )
 }
-// make sure use
+
 export const useProductsContext = () => {
   return useContext(ProductsContext)
 }
-
-//OTHERWAY: (check the navbar.js to follow this option)
-//export default ProductsContext;
-//export {ProductsProvider}
-
-//also if you use this path in this file you need to put import { createContext } from "react"; instead of useContext because you import useContext in the navbar.js file
