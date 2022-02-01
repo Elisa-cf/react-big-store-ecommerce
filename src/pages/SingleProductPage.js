@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
-import { single_product_url as url } from '../utils/constants'
+import { single_product_url as single_url } from '../utils/constants'
 import { formatPrice } from '../utils/helpers'
 import {
   Loading,
@@ -15,6 +15,32 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const SingleProductPage = () => {
+  console.log(useParams());
+  const {id} = useParams(); 
+  const history = useHistory();
+
+  const {single_product_loading: loading, single_product_error: error, single_product: product, fetchSingleProduct} = useProductsContext();
+
+  useEffect(() => {
+    console.log("id param changed", id);
+    fetchSingleProduct(id)
+  }, [])
+   //console.log(product);
+
+  useEffect(() => {
+  if(error) {
+    setTimeout(() => {
+   history.push('/')
+  },3000)
+   }
+  },[error])
+
+  if(loading) {
+    return <Loading/>
+  }
+  if (error) {
+    return <Error />
+  }
   return <h4>single product page</h4>
 }
 

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react'
 import reducer from '../reducers/products_reducer'
 import { products_one as url_one } from '../utils/constants'
+import { single_product_url  as single_url} from '../utils/constants'
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -41,33 +42,31 @@ export const ProductsProvider = ({ children }) => {
 
 
 
-  //FETCHING ALL DATA FROM FAKEAPI: 
+  //FETCHING ALL DATA FROM FAKEAPI:
   //function that handles the loading, the succes and the error:
 
   const fetchProducts = async () => {
     dispatch({ type: GET_PRODUCTS_BEGIN }) 
     try {
       const response_one = await url_one.get()
-      const products_one = response_one.data
-      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products_one })
+      const products = response_one.data
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products })
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR })
     }
 
   }
 
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-
 
   //FETCHING SINGLE PRODUCT FROM FAKE API:
 
- const fetchSingleProduct = async() => {
+
+ const fetchSingleProduct = async (id) => {
    dispatch({type: GET_SINGLE_PRODUCT_BEGIN})
     try {
-      const response_one = await url_one.get()
-      const singleProduct = response_one.data
+      const response = await url_one.get(`/${id}`)
+      console.log(response);
+      const singleProduct = await response.data
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
     } catch (error) {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
@@ -75,13 +74,13 @@ export const ProductsProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    fetchSingleProduct()
+    fetchProducts()
   }, [])
- 
+
 
 
   return (
-    <ProductsContext.Provider value={{...state, openSidebar, closeSidebar}}>  
+    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct}}>  
       {children}
     </ProductsContext.Provider>
   )
