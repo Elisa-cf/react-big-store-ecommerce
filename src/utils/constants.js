@@ -53,7 +53,11 @@ export const products_one = axios.create({
 
 //SINGLE PRODUCTS:
 
-export const single_product_url = `https://fakestoreapi.com/products?id=`
+export const single_product_url = axios.create({
+  baseURL: `https://fakestoreapi.com/products?id=`
+})
+
+// export const single_product_url = `https://fakestoreapi.com/products?id=`
 
 
 
