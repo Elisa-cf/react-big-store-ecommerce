@@ -3,19 +3,20 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import heroBcg from '../assets/hero-bcg.jpeg'
 import heroBcg2 from '../assets/hero-bcg-2.jpeg'
+import fashionGirl from '../assets/fashion-girl.jpeg'
 
 const Hero = () => {
   return <Wrapper className='section-center'>
     <article className="content">
       <h1>
-        design your <br/> comfort zone
+        design your <br/> own style
       </h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores possimus consequuntur reiciendis officia sed fugit? Omnis itaque quibusdam eius reprehenderit.</p>
       <Link to="/products" className='btn hero-btn'>shop now</Link>
     </article>
     <article className="img-container">
-      <img src={heroBcg} alt="nice table" className='main-img'/>
-      <img src={heroBcg2} alt="person working" className='accent-img' />
+      <img src={fashionGirl} alt="nice table" className='main-img'/>
+      {/* <img src={heroBcg2} alt="person working" className='accent-img' /> */}
     </article>
   </Wrapper>
 }
@@ -69,16 +70,16 @@ const Wrapper = styled.section`
       transform: translateX(-50%);
       border-radius: var(--radius);
     }
-    .img-container::before {
-      content: '';
-      position: absolute;
-      width: 10%;
-      height: 80%;
-      background: var(--clr-primary-9);
-      bottom: 0%;
-      left: -8%;
-      border-radius: var(--radius);
-    }
+    // .img-container::before {
+    //   content: '';
+    //   position: absolute;
+    //   width: 10%;
+    //   height: 80%;
+    //   background: var(--clr-primary-9);
+    //   bottom: 0%;
+    //   left: -8%;
+    //   border-radius: var(--radius);
+    // }
   }
 `
 
